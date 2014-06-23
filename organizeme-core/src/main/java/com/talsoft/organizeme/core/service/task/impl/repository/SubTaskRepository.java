@@ -1,4 +1,4 @@
-package com.talsoft.organizeme.core.service.repository.task;
+package com.talsoft.organizeme.core.service.task.impl.repository;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.talsoft.organizeme.core.service.repository.note;
+package com.talsoft.organizeme.core.service.impl.repository.note;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

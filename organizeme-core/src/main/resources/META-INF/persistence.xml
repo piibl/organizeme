@@ -8,9 +8,8 @@
 		<!-- provider -->
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<!-- Déclaration des entités -->
-		<!-- <class>com.talsoft.organizeme.core.domain.User</class> -->
+		<!-- <class>com.talsoft.organizeme.core.domain.user.User</class> -->
 		<!--<class>com.talsoft.organizeme.core.Task</class> -->
-		<!-- Ne fonctionne pas en config actuelle, à confirmer -->
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 
 	</persistence-unit>

@@ -10,10 +10,10 @@
 	</appender>
 
 	<!-- logger courant -->
-	<logger name="com.talsoft.organizeme" level="INFO" additivity="true" />
+	<logger name="com.talsoft.organizeme" level="DEBUG" additivity="true" />
 
 	<!-- Datasource logger -->
-	<logger name="com.mchange" level="OFF" additivity="false"/>
+	<logger name="com.mchange" level="INFO" additivity="false"/>
 
 	<!-- root, DEBUG désactivé -->
 	<root level="INFO">

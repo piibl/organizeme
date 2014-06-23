@@ -1,6 +1,7 @@
 package com.talsoft.organizeme.core.domain.note;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -8,11 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.eclipse.persistence.annotations.Convert;
-import org.eclipse.persistence.annotations.Converter;
 import org.joda.time.DateTime;
 
-import com.talsoft.organizeme.core.util.time.JodaDateTimeConverter;
+import com.talsoft.organizeme.core.util.converter.time.DateTimeConverter;
 
 @Entity
 @Table(name = "TAG")
@@ -40,8 +39,7 @@ public class Tag {
 	private String color;
 
 	@Column(name = "CREATION_DATE", columnDefinition = "TIMESTAMP")
-	@Converter(name = "dateTimeConverter", converterClass = JodaDateTimeConverter.class)
-	@Convert("dateTimeConverter")
+	@Convert(converter = DateTimeConverter.class)
 	private DateTime createdAt;
 
 	public Tag() {
