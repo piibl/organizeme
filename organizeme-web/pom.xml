@@ -34,9 +34,9 @@
 		
 		<!-- Core -->
 		<dependency>
-			<groupId>fr.iut.csid.empower</groupId>
-			<artifactId>elearning-core</artifactId>
-			<version>2.0.0</version>
+			<groupId>com.talsoft</groupId>
+			<artifactId>organizeme-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<!-- LOG dependencies : SLF4J -->

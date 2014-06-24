@@ -1,0 +1,20 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragment/common :: headerFragment">
+</head>
+<body>
+
+	<!-- Utilisateur normal -->
+	<div class="col-md-3 sidebar-offcanvas" id="sidebar" role="navigation" th:fragment="user-sidebar">
+		<ul class="nav nav-pills nav-stacked">
+			<li><a th:href="${tasksLink != null ? tasksLink.href : '#'}">Tâches</a></li>
+			<li><a th:href="${notesLink != null ? notesLink.href : '#'}">Notes</a></li>
+			<li><a th:href="${plannerLink != null ? plannerLink.href : '#'}">Agenda</a></li>
+		</ul>
+	</div>
+
+
+
+</body>
+
+</html>

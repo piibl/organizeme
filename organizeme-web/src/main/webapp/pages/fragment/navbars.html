@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragment/common :: headerFragment">
+</head>
+<body>
+	<div th:fragment="unsigned-navbar">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" th:href="@{/home}">OrganizeMe</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<form class="navbar-form navbar-right" role="form"
+					action="authentication" th:action="@{/authentication}"
+					method="post">
+					<div class="form-group">
+						<input class="form-control" id="j_username" name="j_username"
+							type="text" required="required" autofocus="autofocus"
+							placeholder="Login"></input>
+					</div>
+					<div class="form-group">
+						<input class="form-control" id="j_password" name="j_password"
+							type="password" required="required" placeholder="Mot de passe"></input>
+					</div>
+					<button class="btn btn-success" type="submit">Connexion</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div th:fragment="signed-navbar">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">OrganizeMe</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="#" th:href="${dashboardLink != null ? dashboardLink.href : '#'}"><i
+					class="glyphicon glyphicon-home"></i></a></li>
+					<li><a class="displayLink" href="#" th:href="${notificationsLink != null ? notificationsLink.href : '#'}">Notifications</a></li>
+					<li><a class="displayLink" href="#" th:href="${newsLink != null ? newsLink.href : '#'}">News</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown"><strong th:text="${login}">login</strong> <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="/logout" th:href="@{logout}">Déconnexion</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

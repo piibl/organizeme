@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragment/common :: headerFragment">
+</head>
+<body>
+	<!-- corps, utilisateur non loggué -->
+	<div sec:authorize="hasRole('ROLE_USER')" class="container top-20"
+		th:fragment="user-homepage">
+		<!-- sidebar -->
+		<div class="col-md-3 sidebar-offcanvas" id="sidebar" role="navigation"
+			th:include="fragment/sidebars :: user-sidebar"></div>
+		<!-- Corps -->
+		<div class="col-md-9">
+			<div class="jumbotron">
+
+				<h1>OrganizeMe</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+					enim enim, commodo eget euismod vestibulum, pellentesque porta
+					lacus. Vivamus quis metus magna.</p>
+				<p>Suspendisse vestibulum, enim ut pharetra hendrerit, sapien
+					nulla aliquam nisl, ut feugiat risus felis non mi.</p>
+			</div>
+		</div>
+	</div>
+	<footer th:include="fragment/common :: [//footer]"></footer>
+</body>
+</html>

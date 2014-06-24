@@ -43,6 +43,16 @@ body {
 	margin-top: 20px;
 }
 
+.bordered-bottom{
+	border-bottom : 1px solid #eee;
+	padding-bottom: 5 px;
+}
+
+#upload{
+	opacity: 0; 
+	filter:alpha(opacity: 0);
+}
+
 /* footer {
 	background-color: #F5F5F5;
 	bottom: 0;
