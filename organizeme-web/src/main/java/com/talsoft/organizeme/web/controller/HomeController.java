@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.talsoft.organizeme.web.link.ControllerLinkBuilderFactory;
-import com.talsoft.organizeme.web.reference.DashboardPath;
-import com.talsoft.organizeme.web.reference.GlobalPath;
+import com.talsoft.organizeme.web.reference.path.DashboardPath;
+import com.talsoft.organizeme.web.reference.path.GlobalPath;
 
 @Controller
 @RequestMapping(value = { "/", "/home" })

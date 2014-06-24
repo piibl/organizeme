@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.talsoft.organizeme.web.reference.GlobalPath;
+import com.talsoft.organizeme.web.reference.path.GlobalPath;
 
 @Controller
 public class AccessController {

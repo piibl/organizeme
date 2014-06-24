@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import com.talsoft.organizeme.web.reference.DashboardPath;
+import com.talsoft.organizeme.web.reference.path.DashboardPath;
 
 public class CustomAuthenticationSuccessHandlerTest {
 

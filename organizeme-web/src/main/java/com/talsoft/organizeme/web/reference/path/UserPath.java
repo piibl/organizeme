@@ -1,4 +1,4 @@
-package com.talsoft.organizeme.web.reference;
+package com.talsoft.organizeme.web.reference.path;
 
 public enum UserPath {
 

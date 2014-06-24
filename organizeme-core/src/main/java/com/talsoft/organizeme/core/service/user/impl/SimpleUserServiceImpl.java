@@ -24,7 +24,7 @@ public class SimpleUserServiceImpl extends AbstractCrudService<SimpleUser, Long>
 	}
 
 	@Override
-	protected JpaRepository<SimpleUser, Long> getDAO() {
+	protected JpaRepository<SimpleUser, Long> getRepository() {
 		return simpleUserRepository;
 	}
 

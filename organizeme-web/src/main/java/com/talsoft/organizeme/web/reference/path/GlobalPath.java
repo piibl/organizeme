@@ -1,8 +1,8 @@
-package com.talsoft.organizeme.web.reference;
+package com.talsoft.organizeme.web.reference.path;
 
 public enum GlobalPath {
 
-	HOME("home"), DENIED("denied");
+	HOME("home"), DENIED("denied"), ;
 
 	private String path;
 

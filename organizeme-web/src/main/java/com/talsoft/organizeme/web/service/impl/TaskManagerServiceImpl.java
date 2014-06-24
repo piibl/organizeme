@@ -1,4 +1,4 @@
-package com.talsoft.organizeme.core.service.task.impl;
+package com.talsoft.organizeme.web.service.impl;
 
 import java.util.List;
 
@@ -6,29 +6,27 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.talsoft.organizeme.core.domain.task.Task;
 import com.talsoft.organizeme.core.domain.user.User;
 import com.talsoft.organizeme.core.service.AbstractCrudService;
-import com.talsoft.organizeme.core.service.task.TaskService;
 import com.talsoft.organizeme.core.service.task.impl.repository.TaskRepository;
+import com.talsoft.organizeme.web.service.TaskManagerService;
 
 @Named
-public class TaskServiceImpl extends AbstractCrudService<Task, Long> implements TaskService {
+public class TaskManagerServiceImpl extends AbstractCrudService<Task, Long> implements TaskManagerService {
 
 	@Inject
 	private TaskRepository taskRepository;
 
 	@Override
-	protected JpaRepository<Task, Long> getRepository() {
-		return taskRepository;
+	public List<Task> findByOwner(User owner) {
+		return taskRepository.findByOwner(owner);
 	}
 
 	@Override
-	@Transactional(readOnly = true)
-	public List<Task> findByOwner(User owner) {
-		return taskRepository.findByOwner(owner);
+	protected JpaRepository<Task, Long> getRepository() {
+		return taskRepository;
 	}
 
 }

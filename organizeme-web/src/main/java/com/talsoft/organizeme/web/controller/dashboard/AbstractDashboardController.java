@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.talsoft.organizeme.web.link.ControllerLinkBuilderFactory;
-import com.talsoft.organizeme.web.reference.LinkName;
+import com.talsoft.organizeme.web.reference.link.LinkName;
 
 public abstract class AbstractDashboardController {
 

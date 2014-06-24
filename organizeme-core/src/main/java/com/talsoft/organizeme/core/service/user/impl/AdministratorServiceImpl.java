@@ -24,7 +24,7 @@ public class AdministratorServiceImpl extends AbstractCrudService<Administrator,
 	}
 
 	@Override
-	protected JpaRepository<Administrator, Long> getDAO() {
+	protected JpaRepository<Administrator, Long> getRepository() {
 		return administratorRepository;
 	}
 

@@ -9,9 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.talsoft.organizeme.web.reference.DashboardPath;
-import com.talsoft.organizeme.web.reference.LinkName;
-import com.talsoft.organizeme.web.reference.UserPath;
+import com.talsoft.organizeme.web.reference.link.LinkName;
+import com.talsoft.organizeme.web.reference.path.DashboardPath;
+import com.talsoft.organizeme.web.reference.path.UserPath;
 
 @Controller
 @RequestMapping("/dashboard")

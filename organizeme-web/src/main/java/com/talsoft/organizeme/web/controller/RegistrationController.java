@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.talsoft.organizeme.core.domain.user.SimpleUser;
 import com.talsoft.organizeme.core.domain.user.User;
 import com.talsoft.organizeme.core.service.user.SimpleUserService;
-import com.talsoft.organizeme.web.reference.GlobalPath;
+import com.talsoft.organizeme.web.reference.path.GlobalPath;
 
 @Controller
 public class RegistrationController {

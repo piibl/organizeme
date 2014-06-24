@@ -17,8 +17,8 @@ import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-import com.talsoft.organizeme.web.reference.DashboardPath;
-import com.talsoft.organizeme.web.reference.GlobalPath;
+import com.talsoft.organizeme.web.reference.path.DashboardPath;
+import com.talsoft.organizeme.web.reference.path.GlobalPath;
 
 /**
  * Service de redirection après succes d'authentification

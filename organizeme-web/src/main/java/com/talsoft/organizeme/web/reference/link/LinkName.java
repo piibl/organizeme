@@ -1,4 +1,4 @@
-package com.talsoft.organizeme.web.reference;
+package com.talsoft.organizeme.web.reference.link;
 
 /**
  * Rescense le nom des liens dans les templates thymeleaf
