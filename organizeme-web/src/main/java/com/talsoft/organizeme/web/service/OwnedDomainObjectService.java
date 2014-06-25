@@ -9,7 +9,7 @@ import com.talsoft.organizeme.web.dto.IDTO;
 
 public interface OwnedDomainObjectService<T, X extends Serializable, Y, Z extends IDTO> extends CrudService<T, X> {
 
-	public List<T> findByOwner(Y owner);
+	public List<T> findNotArchivedByOwner(Y owner);
 
 	/**
 	 * Crée et sauvegarde une entité à partir de son DTO

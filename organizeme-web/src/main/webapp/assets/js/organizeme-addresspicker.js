@@ -1,9 +1,5 @@
 $(document).ready(
 	function() {
-	    /* activer datetimepicker */
-	    $('div.datetimepicker').datetimepicker({
-		language : 'fr'
-	    });
 	    /* activer adresspicker */
 	    $(function() {
 		var addressPicker = new AddressPicker();

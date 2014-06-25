@@ -7,10 +7,10 @@
 	<div sec:authorize="hasRole('ROLE_USER')" class="container top-20"
 		th:fragment="user-homepage">
 		<!-- sidebar -->
-		<div class="col-md-3 sidebar-offcanvas" id="sidebar" role="navigation"
+		<div class="col-md-2 sidebar-offcanvas" id="sidebar" role="navigation"
 			th:include="fragment/sidebars :: user-sidebar"></div>
 		<!-- Corps -->
-		<div class="col-md-9">
+		<div class="col-md-10">
 			<div class="jumbotron">
 
 				<h1>OrganizeMe</h1>

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -39,6 +40,13 @@ public class Note {
 	 */
 	@Column(name = "TITLE")
 	private String title;
+
+	/**
+	 * Contenu de la note
+	 */
+	@Lob
+	@Column(name = "CONTENT")
+	private String content;
 	/**
 	 * Date de création de la note
 	 */
@@ -68,17 +76,18 @@ public class Note {
 
 	/**
 	 * @param title
-	 * @param tags
+	 * @param content
 	 * @param createdAt
 	 * @param archived
 	 * @param masterTask
 	 * @param owner
 	 */
-	public Note(String title, DateTime createdAt, boolean archived, Task masterTask, EndUser owner) {
+	public Note(String title, String content, EndUser owner) {
 		this.title = title;
+		this.content = content;
 		this.createdAt = new DateTime();
 		this.archived = false;
-		this.masterTask = masterTask;
+		this.masterTask = null;
 		this.owner = owner;
 	}
 
@@ -112,6 +121,30 @@ public class Note {
 
 	public void setArchived(boolean archived) {
 		this.archived = archived;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public Task getMasterTask() {
+		return masterTask;
+	}
+
+	public EndUser getOwner() {
+		return owner;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public void setMasterTask(Task masterTask) {
+		this.masterTask = masterTask;
+	}
+
+	public void setOwner(EndUser owner) {
+		this.owner = owner;
 	}
 
 }

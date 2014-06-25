@@ -6,31 +6,11 @@
 	th:href="@{/assets/css/bootstrap.min.css}" />
 <link rel="stylesheet" href="../assets/css/organizeme-theme.css"
 	th:href="@{/assets/css/organizeme-theme.css}" />
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="../assets/js/jquery-2.1.1.min.js"
-	th:src="@{/assets/js/jquery-2.1.1.min.js}"></script>
-<script src="../assets/js/jquery-2.1.1.min.js"
-	th:src="@{/assets/js/bootstrap.min.js}"></script>
-<!-- NOTRE SCRIPT MAISON -->
-<script src="../assets/js/organizeme.js"
-	th:src="@{/assets/js/organizeme.js}"></script>
-<!-- datetime picker // TODO migrer vers formulaires-->
-<!-- moment.js avant datetimepicker -->
-<script src="../assets/js/moment.min.js"
-	th:src="@{/assets/js/moment.min.js}"></script>
-<script src="../assets/js/bootstrap-datetimepicker.js"
-	th:src="@{/assets/js/bootstrap-datetimepicker.js}"></script>
 <link rel="stylesheet" href="../assets/css/bootstrap-datetimepicker.css"
 	th:href="@{/assets/css/bootstrap-datetimepicker.css}" />
-<!-- Adress picker -->
-<script type="text/javascript"
-	src="http://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=places&amp;sensor=false"></script>
-<!-- adress picker -->
-<script src="../assets/js/typeahead.js"
-	th:src="@{/assets/js/typeahead.js}"></script>
-<script src="../assets/js/typeahead-adresspicker.js"
-	th:src="@{/assets/js/typeahead-addresspicker.js}"></script>
-
+<link rel="stylesheet" type="text/css"
+	href="../assets/css/bootstrap-wysihtml5.css"
+	th:href="@{/assets/css/bootstrap-wysihtml5.css}" />
 </head>
 <body>
 	<!-- Modal -->
@@ -61,11 +41,39 @@
 
 	<!-- FOOTER -->
 	<footer th:fragment="footer">
-		<nav class="navbar navbar-default navbar-fixed-bottom">
-			<div class="navbar-inner navbar-content-center">
-				<p class="text-muted credit">Copyright 2014 TALSOFT | OrganizeMe</p>
-			</div>
-		</nav>
+		<div id="footerContainer" class="container text-center">
+			<p class="text-muted credit">Copyright 2014
+				TALSOFT | OrganizeMe</p>
+		</div>
+
+		<!-- Fichiers JAVASCRIPT -->
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="../assets/js/jquery-2.1.1.min.js"
+			th:src="@{/assets/js/jquery-2.1.1.min.js}"></script>
+		<script src="../assets/js/bootstrap.js"
+			th:src="@{/assets/js/bootstrap.min.js}"></script>
+		<!-- NOTRE SCRIPT MAISON -->
+		<script src="../assets/js/organizeme.js"
+			th:src="@{/assets/js/organizeme.js}"></script>
+		<!-- datetime picker // TODO migrer vers formulaires-->
+		<!-- moment.js avant datetimepicker -->
+		<script src="../assets/js/moment.min.js"
+			th:src="@{/assets/js/moment.min.js}"></script>
+		<script src="../assets/js/bootstrap-datetimepicker.js"
+			th:src="@{/assets/js/bootstrap-datetimepicker.js}"></script>
+		<!-- Adress picker / google places API pour suggestions des résultats -->
+		<script type="text/javascript"
+			src="http://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=places&amp;sensor=false"></script>
+		<!-- adress picker API -->
+		<script src="../assets/js/typeahead.js"
+			th:src="@{/assets/js/typeahead.js}"></script>
+		<script src="../assets/js/typeahead-adresspicker.js"
+			th:src="@{/assets/js/typeahead-addresspicker.js}"></script>
+		<!-- wysiwyg API + hotkeys -->
+		<script src="../assets/js/wysihtml5-0.3.0.min.js"
+			th:src="@{/assets/js/wysihtml5-0.3.0.min.js}"></script>
+		<script src="../assets/js/bootstrap3-wysihtml5.js"
+			th:src="@{/assets/js/bootstrap3-wysihtml5.js}"></script>
 	</footer>
 </body>
 

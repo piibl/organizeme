@@ -69,15 +69,53 @@
 
 
 		<!-- API pour complétion des adresses et calendriers -->
-		<!-- DatetimePicker -->
+		<!-- DatetimePicker locale fichier -->
 		<script src="../assets/js/locales/bootstrap-datetimepicker.fr.js"
 			th:src="@{/assets/js/locales/bootstrap-datetimepicker.fr.js}"></script>
 
 		<!-- Initialisation des API -->
-		<script src="../assets/js/organizeme-picker.js"
-			th:src="@{/assets/js/organizeme-picker.js}"></script>
+		<script src="../assets/js/organizeme-datepicker.js"
+			th:src="@{/assets/js/organizeme-datepicker.js}"></script>
+		<script src="../assets/js/organizeme-addresspicker.js"
+			th:src="@{/assets/js/organizeme-addresspicker.js}"></script>
 	</div>
-	<!-- Formulaire d'ajout d'une ressource -->
+	<!-- Formulaire d'ajout d'une note -->
+	<div th:fragment="add-note-form">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">&times;</button>
+			<h3 class="modal-title">Création d'une note</h3>
+		</div>
+		<form class="addForm" th:action="@{'notes'}" method="post" role="form"
+			data-redirect_url="none"
+			th:attr="data-redirect_url=${redirectLink != null ? redirectLink.href : 'none'} "
+			data-target_render="#notesTable">
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="title">Titre de la note</label><input name="title"
+						type="text" class="form-control" autofocus="autofocus"
+						required="required" />
+				</div>
+				<div class="form-group">
+					<label for="content">Contenu</label>
+					<textarea id="editor" name="content" class="form-control"
+						autofocus="autofocus" required="required"
+						placeholder="Contenu de la note..." />
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary btn-lg" role="button">Valider</button>
+			</div>
+		</form>
+		<!-- Initialisation des API -->
+		<script src="../assets/js/locales/bootstrap-wysihtml5.fr-FR.js"
+			th:src="@{/assets/js/locales/bootstrap-wysihtml5.fr-FR.js}"></script>
+		<script src="../assets/js/organizeme-wysiwyg.js"
+			th:src="@{/assets/js/organizeme-wysiwyg.js}"></script>
+	</div>
+
+
+
 	<!-- <div th:fragment="add-resource-form">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal"

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.talsoft.organizeme.web.controller.util.DashboardUtils;
 import com.talsoft.organizeme.web.dto.IDTO;
 import com.talsoft.organizeme.web.link.BatchResourceAssembler;
 import com.talsoft.organizeme.web.link.ControllerLinkBuilderFactory;
@@ -22,6 +23,9 @@ import com.talsoft.organizeme.web.service.OwnedDomainObjectService;
 public abstract class AbstractDomainController<T, X extends Serializable, Y, Z extends IDTO> {
 
 	// private static final Logger logger = LoggerFactory.getLogger(AbstractDomainController.class);
+
+	@Inject
+	private DashboardUtils dashboardUtils;
 
 	/**
 	 * Constructeur de liens
@@ -96,7 +100,8 @@ public abstract class AbstractDomainController<T, X extends Serializable, Y, Z e
 	 * @return
 	 */
 	protected String getByOwner(Model model, Y owner) {
-		List<T> entities = getDomainService().findByOwner(owner);
+		dashboardUtils.getDashboardLinks(model);
+		List<T> entities = getDomainService().findNotArchivedByOwner(owner);
 		// Construction des liens d'action et mise en container
 		// Le container contient à la fois l'objet cible et les liens des ressources afférentes
 		List<Resource<T>> entitiesResources = getResourceAssembler().toResource(entities);
@@ -112,7 +117,7 @@ public abstract class AbstractDomainController<T, X extends Serializable, Y, Z e
 	 * @return
 	 */
 	protected String getByOwnerPartialRender(Model model, Y owner) {
-		List<T> entities = getDomainService().findByOwner(owner);
+		List<T> entities = getDomainService().findNotArchivedByOwner(owner);
 		// Construction des liens d'action et mise en container
 		// Le container contient à la fois l'objet cible et les liens des ressources afférentes
 		List<Resource<T>> entitiesResources = getResourceAssembler().toResource(entities);

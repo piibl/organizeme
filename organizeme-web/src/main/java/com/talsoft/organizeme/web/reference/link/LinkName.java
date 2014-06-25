@@ -19,6 +19,8 @@ public enum LinkName {
 	NEW_TASK("newTaskLink"),
 	// lien notes
 	NOTES("notesLink"),
+	// lien nouvellestâches
+	NEW_NOTE("newNoteLink"),
 	// Lien agenda
 	PLANNER("plannerLink");
 

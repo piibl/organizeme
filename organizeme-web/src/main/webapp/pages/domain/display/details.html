@@ -4,6 +4,7 @@
 </head>
 <body>
 	<!-- Le cadre de rendu est délégué au template appelant -->
+	<!-- Détails d'une tâche -->
 	<div th:fragment="display-task-details">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal"
@@ -22,6 +23,22 @@
 			<p th:text="${task.content.startDate}"></p>
 			<h5>Fin de la tâche</h5>
 			<p th:text="${task.content.endDate}"></p>
+		</div>
+
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+		</div>
+	</div>
+	<!-- Détails d'une note -->
+	<div th:fragment="display-note-details">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">&times;</button>
+			<h4 class="modal-title" th:text="${note.content.title}"></h4>
+		</div>
+
+		<div class="modal-body" th:utext="${note.content.content}">
+			
 		</div>
 
 		<div class="modal-footer">

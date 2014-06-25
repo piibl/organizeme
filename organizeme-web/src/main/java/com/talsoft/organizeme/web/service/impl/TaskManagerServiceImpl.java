@@ -38,7 +38,7 @@ public class TaskManagerServiceImpl extends AbstractCrudService<Task, Long> impl
 	}
 
 	@Override
-	public List<Task> findByOwner(EndUser owner) {
+	public List<Task> findNotArchivedByOwner(EndUser owner) {
 		// recherche des notes actives, triées par date de début
 		return taskRepository.findByOwnerAndEndDateGreaterThanOrderByStartDateAsc(owner, new DateTime());
 	}
