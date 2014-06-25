@@ -1,7 +1,7 @@
 package com.talsoft.organizeme.web.reference.path;
 
 public enum DomainPath {
-	EDIT("edit"), DELETE("delete");
+	EDIT("edit"), DELETE("delete"), NEW("new"), PARTIAL("partial");
 	private String path;
 
 	private DomainPath(String path) {

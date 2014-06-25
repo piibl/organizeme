@@ -5,7 +5,7 @@ import javax.inject.Named;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.talsoft.organizeme.core.domain.user.User;
+import com.talsoft.organizeme.core.domain.user.EndUser;
 import com.talsoft.organizeme.core.service.user.UserResearchService;
 import com.talsoft.organizeme.core.service.user.impl.repository.UserRepository;
 
@@ -17,7 +17,7 @@ public class UserResearchServiceImpl implements UserResearchService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public User findByLogin(String login) {
+	public EndUser findByLogin(String login) {
 		return userRepository.findByLogin(login);
 	}
 

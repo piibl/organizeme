@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.talsoft.organizeme.core.domain.user.SimpleUser;
-import com.talsoft.organizeme.core.domain.user.User;
+import com.talsoft.organizeme.core.domain.user.EndUser;
 import com.talsoft.organizeme.core.service.user.SimpleUserService;
 import com.talsoft.organizeme.web.reference.path.GlobalPath;
 
@@ -27,8 +27,8 @@ public class RegistrationController {
 	private SimpleUserService simpleUserService;
 
 	@ModelAttribute("userStructure")
-	public User getUserStructure() {
-		return new User();
+	public EndUser getUserStructure() {
+		return new EndUser();
 	}
 
 	@RequestMapping(value = { "/registration" })

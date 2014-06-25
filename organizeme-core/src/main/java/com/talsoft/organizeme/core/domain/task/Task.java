@@ -7,13 +7,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.joda.time.DateTime;
 
-import com.talsoft.organizeme.core.domain.user.User;
+import com.talsoft.organizeme.core.domain.user.EndUser;
 import com.talsoft.organizeme.core.util.converter.time.DateTimeConverter;
 
 /**
@@ -33,10 +34,17 @@ public class Task {
 	@Column(name = "ID")
 	@Id
 	private Long id;
-	// TODO à monter en objet, multiples buts possibles ?
+
+	/**
+	 * titre de la tâche
+	 */
+	@Column(name = "TITLE")
+	private String title;
+
 	/**
 	 * But de la tâche
 	 */
+	@Lob
 	@Column(name = "GOAL")
 	private String goal;
 	// TODO enum
@@ -60,14 +68,23 @@ public class Task {
 	 */
 	@ManyToOne
 	@JoinColumn(name = "USER_ID")
-	private User owner;
+	private EndUser owner;
 
 	/**
-	 * Date de crétaion de la note
+	 * Date de crétaion de la tache
 	 */
 	@Column(name = "CREATION_DATE", columnDefinition = "TIMESTAMP")
 	@Convert(converter = DateTimeConverter.class)
 	private DateTime createdAt;
+
+	@Column(name = "START_DATE", columnDefinition = "TIMESTAMP")
+	@Convert(converter = DateTimeConverter.class)
+	private DateTime startDate;
+
+	@Column(name = "END_DATE", columnDefinition = "TIMESTAMP")
+	@Convert(converter = DateTimeConverter.class)
+	private DateTime endDate;
+
 	/**
 	 * Archivé
 	 */
@@ -79,6 +96,8 @@ public class Task {
 	}
 
 	/**
+	 * @param title
+	 *            : titre de la tâche
 	 * @param goal
 	 *            : but de la tâche
 	 * @param priority
@@ -90,13 +109,16 @@ public class Task {
 	 * @param periodMonth
 	 *            : nombre de mois pour réaliser la tâche
 	 */
-	public Task(String goal, String priority, String localization, User owner) {
+	public Task(String title, String goal, String priority, String localization, EndUser owner, DateTime startDate, DateTime endDate) {
+		this.title = title;
 		this.goal = goal;
 		this.priority = priority;
 		this.localization = localization;
 		this.createdAt = new DateTime();
 		this.archived = false;
 		this.owner = owner;
+		this.startDate = startDate;
+		this.endDate = endDate;
 	}
 
 	public Long getId() {
@@ -147,11 +169,35 @@ public class Task {
 		this.archived = archived;
 	}
 
-	public User getOwner() {
+	public EndUser getOwner() {
 		return owner;
 	}
 
-	public void setOwner(User owner) {
+	public void setOwner(EndUser owner) {
 		this.owner = owner;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public DateTime getStartDate() {
+		return startDate;
+	}
+
+	public DateTime getEndDate() {
+		return endDate;
+	}
+
+	public void setStartDate(DateTime startDate) {
+		this.startDate = startDate;
+	}
+
+	public void setEndDate(DateTime endDate) {
+		this.endDate = endDate;
 	}
 }

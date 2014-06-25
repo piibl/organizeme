@@ -24,7 +24,7 @@ import com.talsoft.organizeme.core.util.converter.time.DateTimeConverter;
 @Table(name = "USER")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE", discriminatorType = DiscriminatorType.STRING, length = 20)
-public class User {
+public class EndUser {
 
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UserSeq")
 	@SequenceGenerator(name = "UserSeq", sequenceName = "USER_SEQ", allocationSize = 1, initialValue = 1)
@@ -65,7 +65,7 @@ public class User {
 	@Convert(converter = DateTimeConverter.class)
 	protected DateTime subscriptionDate;
 
-	public User() {
+	public EndUser() {
 
 	}
 
@@ -85,7 +85,7 @@ public class User {
 	 * @param email
 	 *            : email de l'utilisateur
 	 */
-	public User(String firstName, String lastName, String login, String password, String email) {
+	public EndUser(String firstName, String lastName, String login, String password, String email) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;

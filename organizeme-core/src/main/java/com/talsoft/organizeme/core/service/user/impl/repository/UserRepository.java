@@ -2,9 +2,9 @@ package com.talsoft.organizeme.core.service.user.impl.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.talsoft.organizeme.core.domain.user.User;
+import com.talsoft.organizeme.core.domain.user.EndUser;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<EndUser, Long> {
 
 	/**
 	 * Retourne l'utilisateur correspondant au login passé en paramètre
@@ -12,6 +12,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	 * @param login
 	 * @return
 	 */
-	public User findByLogin(String login);
+	public EndUser findByLogin(String login);
 
 }

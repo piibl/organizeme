@@ -8,7 +8,7 @@
 		<!-- provider -->
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<!-- Déclaration des entités -->
-		<!-- <class>com.talsoft.organizeme.core.domain.user.User</class> -->
+		<!-- <class>com.talsoft.organizeme.core.domain.user.EndUser</class> -->
 		<!--<class>com.talsoft.organizeme.core.Task</class> -->
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 

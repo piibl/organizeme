@@ -110,12 +110,6 @@
 			<version>1</version>
 		</dependency>
 		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<version>1.0.0.GA</version>
-		</dependency>
-
-		<dependency>
 			<groupId>javax.transaction</groupId>
 			<artifactId>jta</artifactId>
 			<version>1.1</version>
@@ -248,7 +242,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>E-Learning</finalName>
+		<finalName>OrganizeMe</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>

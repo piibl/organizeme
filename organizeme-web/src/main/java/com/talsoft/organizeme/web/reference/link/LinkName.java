@@ -4,6 +4,9 @@ package com.talsoft.organizeme.web.reference.link;
  * Rescense le nom des liens dans les templates thymeleaf
  */
 public enum LinkName {
+
+	// lien redirection
+	REDIRECT("redirectLink"),
 	// lien news
 	NEWS("newslink"),
 	// lien dashboard
@@ -11,7 +14,9 @@ public enum LinkName {
 	// lien notifications
 	NOTIFICATIONS("notificationsLink"),
 	// lien tâches
-	TASKS("taskslink"),
+	TASKS("tasksLink"),
+	// lien nouvellestâches
+	NEW_TASK("newTaskLink"),
 	// lien notes
 	NOTES("notesLink"),
 	// Lien agenda

@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import org.joda.time.DateTime;
 
 import com.talsoft.organizeme.core.domain.task.Task;
-import com.talsoft.organizeme.core.domain.user.User;
+import com.talsoft.organizeme.core.domain.user.EndUser;
 import com.talsoft.organizeme.core.util.converter.time.DateTimeConverter;
 
 /**
@@ -60,7 +60,7 @@ public class Note {
 	 */
 	@JoinColumn(name = "END_USER_ID")
 	@ManyToOne
-	private User owner;
+	private EndUser owner;
 
 	public Note() {
 
@@ -74,7 +74,7 @@ public class Note {
 	 * @param masterTask
 	 * @param owner
 	 */
-	public Note(String title, DateTime createdAt, boolean archived, Task masterTask, User owner) {
+	public Note(String title, DateTime createdAt, boolean archived, Task masterTask, EndUser owner) {
 		this.title = title;
 		this.createdAt = new DateTime();
 		this.archived = false;

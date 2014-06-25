@@ -1,6 +1,6 @@
 package com.talsoft.organizeme.core.service.user;
 
-import com.talsoft.organizeme.core.domain.user.User;
+import com.talsoft.organizeme.core.domain.user.EndUser;
 
 public interface UserResearchService {
 
@@ -11,6 +11,6 @@ public interface UserResearchService {
 	 *            : login de l'utilisateur recherché
 	 * @return
 	 */
-	public User findByLogin(String login);
+	public EndUser findByLogin(String login);
 
 }

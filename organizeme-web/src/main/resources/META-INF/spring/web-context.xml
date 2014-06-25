@@ -26,8 +26,7 @@
 	</mvc:annotation-driven>
 
 
-	<bean id="securityInterceptor"
-		class="com.talsoft.organizeme.web.security.SecurityInterceptor" />
+	<bean id="securityInterceptor" class="com.talsoft.organizeme.web.security.SecurityInterceptor" />
 
 	<bean
 		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
@@ -115,6 +114,7 @@
 			<set>
 				<bean
 					class="org.thymeleaf.extras.springsecurity3.dialect.SpringSecurityDialect" />
+				<bean class="com.talsoft.organizeme.web.util.jodatime.thymeleaf.JodaTimeDialect"></bean>
 			</set>
 		</property>
 	</bean>

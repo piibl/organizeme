@@ -5,8 +5,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.hateoas.Resource;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
@@ -14,14 +12,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.talsoft.organizeme.web.dto.IDTO;
 import com.talsoft.organizeme.web.link.BatchResourceAssembler;
 import com.talsoft.organizeme.web.link.ControllerLinkBuilderFactory;
 import com.talsoft.organizeme.web.service.OwnedDomainObjectService;
 
-public abstract class AbstractDomainController<T, X extends Serializable, Y> {
+public abstract class AbstractDomainController<T, X extends Serializable, Y, Z extends IDTO> {
 
-	private static final Logger logger = LoggerFactory.getLogger(AbstractDomainController.class);
+	// private static final Logger logger = LoggerFactory.getLogger(AbstractDomainController.class);
 
 	/**
 	 * Constructeur de liens
@@ -32,7 +32,7 @@ public abstract class AbstractDomainController<T, X extends Serializable, Y> {
 	/**
 	 * Retourne le service CRUD du type de l'entité cible
 	 */
-	protected abstract OwnedDomainObjectService<T, X, Y> getDomainService();
+	protected abstract OwnedDomainObjectService<T, X, Y, Z> getDomainService();
 
 	/**
 	 * Retourne l'assembleur de ressources associé au type de l'entité cible
@@ -46,7 +46,14 @@ public abstract class AbstractDomainController<T, X extends Serializable, Y> {
 	 * 
 	 * @return
 	 */
-	protected abstract String getBaseView();
+	protected abstract String getMainView();
+
+	/**
+	 * Retourne la vue de rendu partiel, en réponse à un get Ajax sur /partial
+	 * 
+	 * @return
+	 */
+	protected abstract String getPartialView();
 
 	/**
 	 * Retourne le path de la vue détaillée d'une instance
@@ -82,20 +89,36 @@ public abstract class AbstractDomainController<T, X extends Serializable, Y> {
 	protected abstract String getEditFormPath();
 
 	/**
-	 * Vue globale, affiche tous les éléments du type de l'entité
+	 * Vue globale, affiche tous les éléments du type de l'entité appartenant au propriétaire passé en paramètre <br/>
 	 * 
 	 * @param model
+	 * @param owner
 	 * @return
 	 */
-	@RequestMapping(method = RequestMethod.GET)
-	public String getAll(Model model) {
-		List<T> entities = getDomainService().findAll();
+	protected String getByOwner(Model model, Y owner) {
+		List<T> entities = getDomainService().findByOwner(owner);
 		// Construction des liens d'action et mise en container
 		// Le container contient à la fois l'objet cible et les liens des ressources afférentes
 		List<Resource<T>> entitiesResources = getResourceAssembler().toResource(entities);
 		model.addAttribute(getEntitiesAtributeName(), entitiesResources);
-		return getBaseView();
-	}
+		return getMainView();
+	};
+
+	/**
+	 * Rendu partial suite Appel Ajax, affiche tous les éléments du type de l'entité appartenant au propriétaire passé en paramètre <br/>
+	 * 
+	 * @param model
+	 * @param owner
+	 * @return
+	 */
+	protected String getByOwnerPartialRender(Model model, Y owner) {
+		List<T> entities = getDomainService().findByOwner(owner);
+		// Construction des liens d'action et mise en container
+		// Le container contient à la fois l'objet cible et les liens des ressources afférentes
+		List<Resource<T>> entitiesResources = getResourceAssembler().toResource(entities);
+		model.addAttribute(getEntitiesAtributeName(), entitiesResources);
+		return getPartialView();
+	};
 
 	/**
 	 * Retourne le formulaire de saisie d'une nouvelle instance <br/>
@@ -110,14 +133,15 @@ public abstract class AbstractDomainController<T, X extends Serializable, Y> {
 	}
 
 	/**
-	 * Demande de création
+	 * Requete Post ajax pour création entity <br/>
+	 * TODO refactor !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	 * 
 	 * @param entity
 	 * @return
 	 */
 	// @RequestMapping(method = RequestMethod.POST)
-	// public String insertNewJSON(@RequestBody Y entityDTO, Model model) {
-	// getCrudService().createFromDTO(entityDTO);
+	// protected String addNew(@RequestBody Z entityDTO, Model model) {
+	// getDomainService().createFromDTO(entityDTO, );
 	// // Alimenter le modèle avec la liste mise à jour
 	// return getAll(model);
 	// }
@@ -134,7 +158,6 @@ public abstract class AbstractDomainController<T, X extends Serializable, Y> {
 		// TODO Quick'n'dirty, j'aime !
 		Resource<T> resource = getResourceAssembler().toResource(getDomainService().find(id));
 		model.addAttribute(getSingleEntityAtributeName(), resource);
-		logger.info("getDetails calls : [" + getDetailsView() + "]");
 		return getDetailsView();
 	}
 
@@ -147,11 +170,9 @@ public abstract class AbstractDomainController<T, X extends Serializable, Y> {
 	 */
 	@RequestMapping(value = "/{entityId}/edit", method = RequestMethod.GET)
 	public String editEntity(@PathVariable("entityId") X id, Model model) {
-		Resource<T> resource = getResourceAssembler().toResource(getDomainService().find(id));
-		// TODO externalisation / personnalisation selon entités
-		// Message de suppression
 		// Construction des liens d'action et mise en container
 		// Le container contient à la fois l'objet cible et les liens des ressources afférentes
+		Resource<T> resource = getResourceAssembler().toResource(getDomainService().find(id));
 		model.addAttribute(getSingleEntityAtributeName(), resource);
 		return getEditFormPath();
 	}
@@ -177,17 +198,13 @@ public abstract class AbstractDomainController<T, X extends Serializable, Y> {
 	 * @return
 	 */
 	@RequestMapping(value = "/{entityId}/delete", method = RequestMethod.GET)
+	@ResponseBody
 	public String deleteEntity(@PathVariable("entityId") X id, Model model) {
 		T entityTodelete = getDomainService().find(id);
 		getDomainService().delete(entityTodelete);
 		// TODO externalisation / personnalisation selon entités
-		// Message de suppression
-		List<T> entities = getDomainService().findAll();
-		// Construction des liens d'action et mise en container
-		// Le container contient à la fois l'objet cible et les liens des ressources afférentes
-		List<Resource<T>> entitiesResources = getResourceAssembler().toResource(entities);
-		model.addAttribute(getEntitiesAtributeName(), entitiesResources);
-		return getAll(model);
+		// TODO Message de suppression
+		return "sucess";
 	}
 
 }

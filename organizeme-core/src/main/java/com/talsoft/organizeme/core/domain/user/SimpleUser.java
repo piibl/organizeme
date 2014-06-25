@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("U")
-public class SimpleUser extends User {
+public class SimpleUser extends EndUser {
 
 	public SimpleUser() {
 

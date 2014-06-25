@@ -40,21 +40,21 @@ public class CustomUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
 		// Recherche de l'utilisateur dans les repos
-		com.talsoft.organizeme.core.domain.user.User user = getUser(username);
-		if (user == null) {
+		com.talsoft.organizeme.core.domain.user.EndUser endUser = getUser(username);
+		if (endUser == null) {
 			logger.debug("No user registred for [" + username + "]");
 			// Aucun utilisateur enregistré pour ce login
-			throw new UsernameNotFoundException("User with login " + username + " doesn't exist.");
+			throw new UsernameNotFoundException("EndUser with login " + username + " doesn't exist.");
 		}
 		boolean enabled = true;
 		boolean accountNonExpired = true;
 		boolean credentialsNonExpired = true;
 		boolean accountNonLocked = true;
-		Collection<? extends GrantedAuthority> authorities = getAuthorities(user);
+		Collection<? extends GrantedAuthority> authorities = getAuthorities(endUser);
 		if (authorities.isEmpty()) {
 			// TODO erreur, roles non définis pour ce type d'utilisateurs
 		}
-		return new User(user.getLogin(), user.getPassword().toLowerCase(), enabled, accountNonExpired, credentialsNonExpired, accountNonLocked,
+		return new User(endUser.getLogin(), endUser.getPassword().toLowerCase(), enabled, accountNonExpired, credentialsNonExpired, accountNonLocked,
 				authorities);
 
 	}
@@ -65,26 +65,26 @@ public class CustomUserDetailsService implements UserDetailsService {
 	 * @param login
 	 * @return
 	 */
-	private com.talsoft.organizeme.core.domain.user.User getUser(String login) {
+	private com.talsoft.organizeme.core.domain.user.EndUser getUser(String login) {
 		/**
 		 * TODO refactor, code immonde
 		 */
 		// recherche parmi les utilisateurs simples
-		com.talsoft.organizeme.core.domain.user.User user = simpleUserRepository.findByLogin(login);
+		com.talsoft.organizeme.core.domain.user.EndUser endUser = simpleUserRepository.findByLogin(login);
 		// si pas de résultat, recherche parmi les admins
-		if (user == null) {
-			user = administratorRepository.findByLogin(login);
+		if (endUser == null) {
+			endUser = administratorRepository.findByLogin(login);
 		}
-		return user;
+		return endUser;
 
 	}
 
 	/**
-	 * @param user
+	 * @param endUser
 	 * @return
 	 */
-	public Collection<? extends GrantedAuthority> getAuthorities(com.talsoft.organizeme.core.domain.user.User user) {
-		List<GrantedAuthority> authList = getGrantedAuthorities(getRoles(user));
+	public Collection<? extends GrantedAuthority> getAuthorities(com.talsoft.organizeme.core.domain.user.EndUser endUser) {
+		List<GrantedAuthority> authList = getGrantedAuthorities(getRoles(endUser));
 		for (GrantedAuthority grantedAuthority : authList) {
 			logger.debug("Authority : [" + grantedAuthority.getAuthority() + "]");
 		}
@@ -94,19 +94,19 @@ public class CustomUserDetailsService implements UserDetailsService {
 	/**
 	 * Retourne les rôles associés à un type d'utilisateur
 	 * 
-	 * @param user
+	 * @param endUser
 	 * @return
 	 */
-	public List<String> getRoles(com.talsoft.organizeme.core.domain.user.User user) {
+	public List<String> getRoles(com.talsoft.organizeme.core.domain.user.EndUser endUser) {
 		List<String> roles = new ArrayList<String>();
 		// Si admin
-		if (user instanceof Administrator) {
-			logger.debug("User [" + user.getLogin() + "] is administrator");
+		if (endUser instanceof Administrator) {
+			logger.debug("EndUser [" + endUser.getLogin() + "] is administrator");
 			// Tous les droits sur tout !
 			roles.add("ROLE_ADMIN");
 
-		} else if (user instanceof SimpleUser) {
-			logger.debug("User [" + user.getLogin() + "] is simple user");
+		} else if (endUser instanceof SimpleUser) {
+			logger.debug("EndUser [" + endUser.getLogin() + "] is simple user");
 			roles.add("ROLE_USER");
 		}
 		return roles;
