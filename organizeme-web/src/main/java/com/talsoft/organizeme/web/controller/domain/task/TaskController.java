@@ -32,7 +32,7 @@ public class TaskController extends AbstractDomainController<Task, Long, EndUser
 
 	private String mainView = "domain/tasks";
 	private String partialView = "domain/display/tables :: tasks-table";
-	private String detailsView = "domain/details/tasks :: display-details";
+	private String detailsView = "domain/display/details :: display-task-details";
 	private String entitiesAttributeName = "tasks";
 	private String singleEntityAttributeName = "task";
 	private String addForm = "domain/forms/add-forms :: add-task-form";

@@ -10,8 +10,10 @@
 				aria-hidden="true">&times;</button>
 			<h3 class="modal-title">Création d'une tâche</h3>
 		</div>
-		<form class="addForm" th:action="@{'tasks'}" method="post" role="form" data-redirect_url="none"
-					th:attr="data-redirect_url=${redirectLink != null ? redirectLink.href : 'none'} " data-target_render="#tasksTable">
+		<form class="addForm" th:action="@{'tasks'}" method="post" role="form"
+			data-redirect_url="none"
+			th:attr="data-redirect_url=${redirectLink != null ? redirectLink.href : 'none'} "
+			data-target_render="#tasksTable">
 			<div class="modal-body">
 				<div class="form-group">
 					<label for="title">Titre</label><input name="title" type="text"
@@ -25,15 +27,23 @@
 						placeholder="Les courses au Super U, c'est génial..." />
 				</div>
 				<div class="form-group">
-					<label for="priority">Priorité</label><input name="priority" type="text"
-						class="form-control" autofocus="autofocus" required="required"
-						placeholder="Haute, basse, whatever..." />
+					<label for="priority">Priorité</label><input name="priority"
+						type="text" class="form-control" autofocus="autofocus"
+						required="required" placeholder="Haute, basse, whatever..." />
 				</div>
 				<div class="form-group">
-					<label for="localization">Lieu</label><input name="localization" type="text"
-						class="form-control" autofocus="autofocus" required="required"
-						placeholder="Paname, Trifouillis-les-Oies..." />
+					<label for="localization">Lieu</label>
+					<div class="form-group">
+						<input id="address" name="localization" class="form-control"
+							type="text" placeholder="Entrer une adresse"></input>
+					</div>
 				</div>
+
+				<!-- <label for="localization">Lieu</label><input id="address"
+						name="localization" type="text" class="form-control"
+						autofocus="autofocus" required="required"
+						placeholder="Paris, Trifouillis-les-Oies..." /> -->
+
 				<div class="form-group">
 					<label for="startDate">Début de la tâche</label>
 					<div class='input-group date datetimepicker'>
@@ -56,16 +66,16 @@
 				<button type="submit" class="btn btn-primary btn-lg" role="button">Valider</button>
 			</div>
 		</form>
+
+
+		<!-- API pour complétion des adresses et calendriers -->
+		<!-- DatetimePicker -->
 		<script src="../assets/js/locales/bootstrap-datetimepicker.fr.js"
 			th:src="@{/assets/js/locales/bootstrap-datetimepicker.fr.js}"></script>
-		<script type="text/javascript">
-	    /* activer datetimepicker */
-	    $(document).ready(function() {
-		$('div.datetimepicker').datetimepicker({
-		    language : 'fr'
-		});
-	    });
-	</script>
+
+		<!-- Initialisation des API -->
+		<script src="../assets/js/organizeme-picker.js"
+			th:src="@{/assets/js/organizeme-picker.js}"></script>
 	</div>
 	<!-- Formulaire d'ajout d'une ressource -->
 	<!-- <div th:fragment="add-resource-form">

@@ -30,9 +30,11 @@
 						th:placeholder="${task.content.priority}" />
 				</div>
 				<div class="form-group">
-					<label for="localization">Lieu</label><input name="localization" type="text"
-						class="form-control" autofocus="autofocus" required="required"
-						placeholder="Paname, Trifouillis-les-Oies..." />
+					<label for="localization">Lieu</label>
+					<div class="form-group">
+						<input id="address" name="localization" class="form-control"
+							type="text" th:placeholder="${task.content.localization}"></input>
+					</div>
 				</div>
 				<div class="form-group">
 					<label for="startDate">Début de la tâche</label>

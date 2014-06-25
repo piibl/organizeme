@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragment/common :: headerFragment">
+</head>
+<body>
+	<!-- Le cadre de rendu est délégué au template appelant -->
+	<div th:fragment="display-task-details">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">&times;</button>
+			<h4 class="modal-title" th:text="${task.content.title}"></h4>
+		</div>
+
+		<div class="modal-body">
+			<h5>But de la tâche</h5>
+			<p th:text="${task.content.goal}"></p>
+			<h5>Priorité</h5>
+			<p th:text="${task.content.priority}"></p>
+			<h5>Localisation de la tâche</h5>
+			<p th:text="${task.content.localization}"></p>
+			<h5>Début de la tâche</h5>
+			<p th:text="${task.content.startDate}"></p>
+			<h5>Fin de la tâche</h5>
+			<p th:text="${task.content.endDate}"></p>
+		</div>
+
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+		</div>
+	</div>
+</body>
+</html>

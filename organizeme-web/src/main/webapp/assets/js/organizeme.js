@@ -117,16 +117,16 @@ $(document)
 					});
 			    });
 		    // Affichage de listes dans le panneau central
-		    $('.displayLink').on('click', function(event) {
-			// Appel de la fonction de rendu
-			display($(this), event);
-		    });
+//		    $('.displayLink').on('click', function(event) {
+//			// Appel de la fonction de rendu
+//			display($(this), event);
+//		    });
 		    // Liens display dans le cadre de rendu
-		    $("#ajaxPanel").on('click', "a.displayLink",
-			    function(event) {
-				// Appel de la fonction de rendu
-				display($(this), event);
-			    });
+//		    $("#ajaxPanel").on('click', "a.displayLink",
+//			    function(event) {
+//				// Appel de la fonction de rendu
+//				display($(this), event);
+//			    });
 		    // Suppression d'objets via ajax render
 		    $(".ajax-enabled")
 			    .on(
