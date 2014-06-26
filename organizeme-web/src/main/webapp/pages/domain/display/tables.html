@@ -87,7 +87,7 @@
 							th:href="${note.getLink('self').href}"
 							th:text="${note.content.title}"></a></td>
 						<td class="span4" th:text="${#joda.customDateTime(note.content.createdAt)}">Bryan123</td>
-						<td class="span4" th:text="${note.content.archived ? 'active' : 'archivée'}">Bryan123</td>
+						<td class="span4" th:text="${!note.content.archived ? 'active' : 'archivée'}">Bryan123</td>
 						<td class="span2"><a class="editLink" href="./edit.html"
 							th:href="${note.getLink('edit').href}"><i
 								class="glyphicon glyphicon-pencil"></i></a></td>

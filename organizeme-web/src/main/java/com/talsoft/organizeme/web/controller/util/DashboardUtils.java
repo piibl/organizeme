@@ -28,6 +28,9 @@ public class DashboardUtils {
 	 */
 	public Model getDashboardLinks(Model model) {
 		logger.debug("Adding user dashboard links to model...");
+		model.addAttribute(LinkName.DASHBOARD.getName(), linkBuilderFactory.linkTo(DashboardController.class).withSelfRel());
+		model.addAttribute(LinkName.NOTIFICATIONS.getName(), null);
+		model.addAttribute(LinkName.NEWS.getName(), null);
 		// Ajout des données spécifiques aux utilisateurs simples
 		model.addAttribute(LinkName.TASKS.getName(), linkBuilderFactory.linkTo(DashboardController.class).slash(UserPath.TASKS.getPath())
 				.withSelfRel());
