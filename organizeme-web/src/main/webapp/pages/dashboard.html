@@ -12,8 +12,7 @@
 	<div th:if="${login != null}" sec:authorize="hasRole('ROLE_USER')"
 		class="container top-20" th:replace="homepages/user :: user-homepage"></div>
 	<!-- corps admin todo -->
-	<!-- footer -->	
-	<footer th:include="fragment/common :: [//footer]"></footer>
-
+	<!-- Modal, si besoin -->
+	<div th:replace="fragment/common :: simple-modal"></div>
 </body>
 </html>

@@ -10,4 +10,8 @@ public interface TaskManagerService extends OwnedDomainObjectService<Task, Long,
 
 	List<Task> findByOwnerNonArchived(EndUser owner);
 
+	List<Task> findActiveByOwnerLimitResults(EndUser owner, int limit);
+
+	List<Task> findIncomingByOwnerLimitResults(EndUser owner, int limit);
+
 }

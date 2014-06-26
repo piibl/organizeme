@@ -5,6 +5,8 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,6 +39,14 @@ public class NoteManagerServiceImpl extends AbstractCrudService<Note, Long> impl
 	public List<Note> findNotArchivedByOwner(EndUser owner) {
 		// recherche des notes actives, triées par date de création
 		return noteRepository.findByOwnerAndArchivedOrderByCreatedAtAsc(owner, false);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Note> findLastestByOwner(EndUser owner, int limit) {
+		Pageable resultLimit = new PageRequest(0, limit);
+		// recherche des notes actives, triées par date de création
+		return noteRepository.findByOwnerAndArchivedOrderByCreatedAtDesc(owner, false, resultLimit);
 	}
 
 	@Override

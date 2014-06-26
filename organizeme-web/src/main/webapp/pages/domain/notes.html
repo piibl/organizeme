@@ -10,27 +10,30 @@
 
 	<!-- corps notes -->
 	<div class="container top-20">
-		<!-- Sidebar -->
-		<div class="col-md-2 sidebar-offcanvas" id="sidebar" role="navigation"
-			th:include="fragment/sidebars :: user-sidebar"></div>
-		<!-- Corps -->
-		<div class="col-md-10">
-			<!-- Cadre de rendu ajax -->
-			<div id="ajaxMessage"></div>
-			<!-- Boutons d'action -->
-			<ul class="nav nav-pills">
-				<li th:if="${newNoteLink}"><a class="btn addForm"
-					href="/notes/new" th:href="${newNoteLink.href}" role="button"
-					data-toggle="modal" data-target="#modal"><i
-						class="glyphicon glyphicon-plus"></i> Ajouter une note</a></li>
-			</ul>
-			<div th:replace="domain/display/tables :: notes-table"></div>
+		<div class="row">
+			<!-- Sidebar -->
+			<div class="col-md-2 sidebar-offcanvas" id="sidebar"
+				role="navigation" th:include="fragment/sidebars :: user-sidebar"></div>
+			<!-- Corps -->
+			<div class="col-md-10">
+				<!-- Cadre de rendu ajax -->
+				<div id="ajaxMessage"></div>
+				<!-- Boutons d'action -->
+				<ul class="nav nav-pills">
+					<li th:if="${newNoteLink}"><a class="btn addForm"
+						href="/notes/new" th:href="${newNoteLink.href}" role="button"
+						data-toggle="modal" data-target="#modal"><i
+							class="glyphicon glyphicon-plus"></i> Ajouter une note</a></li>
+				</ul>
+				<div th:replace="domain/display/tables :: notes-table"></div>
 
+			</div>
 		</div>
+		<!-- footer -->
+		<footer th:include="fragment/common :: [//footer]"></footer>
 	</div>
 	<!-- Modal, si besoin -->
 	<div th:replace="fragment/common :: simple-modal"></div>
-	<!-- footer -->
-	<footer th:include="fragment/common :: [//footer]"></footer>
+
 </body>
 </html>

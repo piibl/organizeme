@@ -3,25 +3,132 @@
 <head th:include="fragment/common :: headerFragment">
 </head>
 <body>
-	<!-- corps, utilisateur non loggué -->
+	<!-- corps, utilisateur loggué -->
 	<div sec:authorize="hasRole('ROLE_USER')" class="container top-20"
 		th:fragment="user-homepage">
-		<!-- sidebar -->
-		<div class="col-md-2 sidebar-offcanvas" id="sidebar" role="navigation"
-			th:include="fragment/sidebars :: user-sidebar"></div>
-		<!-- Corps -->
-		<div class="col-md-10">
-			<div class="jumbotron">
+		<div class="row">
+			<!-- sidebar -->
+			<div class="col-md-2 sidebar-offcanvas" id="sidebar"
+				role="navigation" th:include="fragment/sidebars :: user-sidebar"></div>
+			<!-- Corps -->
+			<div class="col-md-10">
+				<!-- rows -->
+				<div class="bordered-bottom">
+					<div>
+						<h2>Tâches en cours</h2>
+						<div th:unless="${#lists.isEmpty(activeTasks)}">
+							<table class="table table-striped table-hover">
+								<thead>
+									<tr>
+										<th>Titre</th>
+										<th>Localisation</th>
+										<th>Début</th>
+										<th>Fin</th>
+									</tr>
+								</thead>
+								<tr th:each="task : ${activeTasks}">
+									<td><a class="detailsLink" href="./view.html"
+										th:href="${task.getLink('self').href}"
+										th:text="${task.content.title}"></a></td>
+									<td class="span4" th:text="${task.content.localization}">Bryan123</td>
+									<td class="span4"
+										th:text="${#joda.customDateTime(task.content.startDate)}">Bryan123</td>
+									<td class="span4"
+										th:text="${#joda.customDateTime(task.content.endDate)}">Bryan123</td>
 
-				<h1>OrganizeMe</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-					enim enim, commodo eget euismod vestibulum, pellentesque porta
-					lacus. Vivamus quis metus magna.</p>
-				<p>Suspendisse vestibulum, enim ut pharetra hendrerit, sapien
-					nulla aliquam nisl, ut feugiat risus felis non mi.</p>
+								</tr>
+
+
+							</table>
+
+
+						</div>
+						<div th:if="${#lists.isEmpty(activeTasks)}">
+							<p>Vous n'avez aucune tâche en cours.</p>
+						</div>
+					</div>
+					<div>
+						<h2>Taches à venir</h2>
+						<div th:unless="${#lists.isEmpty(incomingTasks)}">
+
+							<table class="table table-striped table-hover">
+								<thead>
+									<tr>
+										<th>Titre</th>
+										<th>Localisation</th>
+										<th>Début</th>
+										<th>Fin</th>
+									</tr>
+								</thead>
+								<tr th:each="task : ${incomingTasks}">
+									<td><a class="detailsLink" href="./view.html"
+										th:href="${task.getLink('self').href}"
+										th:text="${task.content.title}"></a></td>
+									<td class="span4" th:text="${task.content.localization}">Bryan123</td>
+									<td class="span4"
+										th:text="${#joda.customDateTime(task.content.startDate)}">Bryan123</td>
+									<td class="span4"
+										th:text="${#joda.customDateTime(task.content.endDate)}">Bryan123</td>
+
+								</tr>
+
+
+							</table>
+
+
+						</div>
+						<div th:if="${#lists.isEmpty(incomingTasks)}">
+							<p>Vous n'avez aucune tâche à venir.</p>
+						</div>
+					</div>
+					<p>
+						<a role="button"
+							th:href="${tasksLink != null ? tasksLink.href : '#'}"
+							class="btn btn-primary">Gérer vos tâches >></a>
+					</p>
+				</div>
+				<div>
+					<h2>Dernières notes enregistrées</h2>
+					<div th:unless="${#lists.isEmpty(lastNotes)}">
+						<table class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th>Titre</th>
+									<th>Date de création</th>
+								</tr>
+							</thead>
+							<tr th:each="note : ${lastNotes}">
+								<td><a class="detailsLink" href="./view.html"
+									th:href="${note.getLink('self').href}"
+									th:text="${note.content.title}"></a></td>
+								<td class="span4"
+									th:text="${#joda.customDateTime(note.content.createdAt)}">Bryan123</td>
+
+							</tr>
+
+
+						</table>
+
+
+					</div>
+					<div th:if="${#lists.isEmpty(lastNotes)}">
+						<p>Aucune note enregistrée.</p>
+					</div>
+					<p>
+						<a role="button"
+							th:href="${notesLink != null ? notesLink.href : '#'}"
+							class="btn btn-primary">Gérer vos notes >></a>
+					</p>
+
+				</div>
+				<!-- fin rows -->
 			</div>
+
 		</div>
+
+		<footer th:include="fragment/common :: [//footer]"></footer>
 	</div>
-	<footer th:include="fragment/common :: [//footer]"></footer>
+	<!-- Modal, si besoin -->
+	<div th:replace="fragment/common :: simple-modal"></div>
 </body>
 </html>

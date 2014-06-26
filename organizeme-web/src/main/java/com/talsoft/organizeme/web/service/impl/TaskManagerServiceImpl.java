@@ -8,6 +8,8 @@ import javax.inject.Named;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.talsoft.organizeme.core.domain.task.Task;
@@ -41,6 +43,21 @@ public class TaskManagerServiceImpl extends AbstractCrudService<Task, Long> impl
 	public List<Task> findNotArchivedByOwner(EndUser owner) {
 		// recherche des notes actives, triées par date de début
 		return taskRepository.findByOwnerAndEndDateGreaterThanOrderByStartDateAsc(owner, new DateTime());
+	}
+
+	@Override
+	public List<Task> findActiveByOwnerLimitResults(EndUser owner, int limit) {
+		Pageable limitOfResults = new PageRequest(0, limit);
+		// recherche des notes actives, triées par date de début
+		return taskRepository.findByOwnerAndStartDateLessThanAndEndDateGreaterThanOrderByEndDateAsc(owner, new DateTime(), new DateTime(),
+				limitOfResults);
+	}
+
+	@Override
+	public List<Task> findIncomingByOwnerLimitResults(EndUser owner, int limit) {
+		Pageable limitOfResults = new PageRequest(0, limit);
+		// recherche des notes actives, triées par date de début
+		return taskRepository.findByOwnerAndStartDateGreaterThanOrderByStartDateAsc(owner, new DateTime(), limitOfResults);
 	}
 
 	@Override

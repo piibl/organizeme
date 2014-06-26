@@ -222,6 +222,44 @@ $(document)
 						});
 				    });
 		    // Détails d'une entité, rendu dans un modal
+		    $("a.detailsLink")
+			    .on(
+				    'click',
+				    function(event) {
+					event.preventDefault();
+					$("#modalContent").empty();
+					$("#ajaxMessage").empty();
+					$
+						.ajax({
+						    type : 'GET',
+						    // URL déterminée par
+						    // l'attribut href
+						    url : $(this).attr('href'),
+						    beforeSend : function() {
+							// En attente
+							$('#ajaxMessage')
+								.html(
+									'<div class="alert alert-info alert-dismissable"><p>Loading...</p></div>');
+						    },
+						    success : function(data) {
+							$('#ajaxMessage')
+								.empty();
+							// Requete ok
+							$("#modalContent")
+								.append(data);
+							$("#modal").modal({
+							    show : true
+							});
+						    },
+						    error : function() {
+							// Requête ko
+							$('#ajaxMessage')
+								.html(
+									'<div class="alert alert-danger alert-dismissable"><button class="close"aria-hidden="true" data-dismiss="alert"type="button">×</button> <strong>Ooops !</strong> Petit plantage, veuillez  ressayer dans quelques instants, merci !</div>');
+						    }
+						});
+				    });
+		    // Détails d'une entité, rendu dans un modal
 		    $(".ajax-enabled").on('click', 'a.displayLinkNotModal',
 			    function(event) {
 				display($(this), event);

@@ -4,7 +4,9 @@
 </head>
 <body>
 	<!-- corps, utilisateur non loggué -->
-	<div th:if="${login == null}" class="container top-20" th:fragment="unsigned-homepage">
+	<div th:if="${login == null}" class="container top-20"
+		th:fragment="unsigned-homepage">
+		<!-- alertes -->
 		<div class="alert alert-danger alert-dismissable"
 			th:if="${(param.error != null) and (param.error[0] == 'true')}">
 			<button class="close" aria-hidden="true" data-dismiss="alert"
@@ -28,24 +30,91 @@
 				connecter au service.<br />
 			</p>
 		</div>
-		<!-- <div th:include="fragment/registration :: registration-form"> -->
+		<!-- Fin alertes -->
+		<!-- Jumbotron -->
 		<div class="jumbotron">
 
 			<h1>OrganizeMe</h1>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-				enim enim, commodo eget euismod vestibulum, pellentesque porta
-				lacus. Vivamus quis metus magna.</p>
-			<p>Suspendisse vestibulum, enim ut pharetra hendrerit, sapien
-				nulla aliquam nisl, ut feugiat risus felis non mi.</p>
-
-			<p>AND BLABLABLA !</p>
-			<p>
-				<a href="/registration" th:href="@{/registration}"
-					class="btn btn-primary btn-lg" role="button" data-toggle="modal"
-					data-target="#modal">S'inscire</a>
-			</p>
+			<!-- rows -->
+			<div class="row">
+				<div class="col-lg-12">
+					<p>
+						<strong>OrganizeMe</strong> est une application de prise de notes et de gestion de tâches pour l'organisation personnelle et professionnelle.
+					</p>
+					<p>Le but d'<strong>OrganizeMe</strong> est de vous aider à organiser vos idées et vos tâches, afin d'être toujours plus efficace et de ne zapper aucun de vos impératifs !</p>
+					<p><strong>OrganizeMe</strong> se décline en une interface web et une application mobile, vos données sont synchronisées en temps réel sur vos différents appareils.</p>
+					<p>
+						<a href="/registration" th:href="@{/registration}"
+							class="btn btn-primary btn-lg" role="button" data-toggle="modal"
+							data-target="#modal">S'inscire</a>
+					</p>
+				</div>
+			</div>
+			<!-- fin rows -->
 		</div>
+		<!-- fin jumbotron -->
+		<!-- rows -->
+		<div class="row">
+			<div class="col-lg-6">
+				<h2>Soyez organisé(e), partout, tout le temps !</h2>
+				<p>
+					<strong>OrganizeMe</strong> vous permet de toujours avoir accès à
+					vos données, où que vous soyez et sur des supports variés :
+					smartphones, tablettes, pc portables, etc.
+				</p>
+				<p>
+					Pour profiter pleinement d'<strong>OrganizeMe</strong> et de la
+					synchronization des données entre vos différents appareils,
+					n'attendez plus et téléchargez dès à présent l'application Android
+					<strong>OrganizeMe</strong> !
+				</p>
+				<p>
+					<a role="button" href="#" class="btn btn-primary">Télecharger
+						OrganizeMe Android v1.0 >></a>
+				</p>
+				<p>
+					<a href="#">> Guides d'utilisation</a>
+				</p>
+				<p>
+					<a href="#">> Notes de versions</a>
+				</p>
+			</div>
+			<div class="col-lg-6">
+				<h2>OrganizeMe Android v2.0 disponible en Beta</h2>
+				<p class="text-primary">
+					Nous travaillons sur de toutes nouvelles fonctionnalités plutôt
+					sympathiques pour l'application <strong>OrganizeMe</strong> sur
+					Android.
+				</p>
+				<p>
+					<strong>Et nous avons besoin de vous !</strong>
+				</p>
+				<p>
+					Rejoignez notre programme de Beta test dès aujourd'hui, découvrez
+					avant tout le monde les nouvelles fonctionnalités et aidez-nous à
+					construire le futur d'<strong>OrganizeMe</strong> sur votre mobile.
+				</p>
+				<p>Au programme de cette v2.0, toujours plus de synchronisation
+					de données entre vos différents appareils, l'apparition d'un
+					panneau de statistiques mais aussi et surtout l'arrivée tant
+					attendue des tâches collaboratives !</p>
+				<p>
+					<a role="button" href="#" class="btn btn-primary">Participer à
+						la beta test »</a>
+				</p>
+				<p>
+					<a href="#">> Spécifications OrganiseMe v2.0</a>
+				</p>
+			</div>
+
+		</div>
+		<!-- fin rows -->
+		<!-- footer -->
+		<footer th:include="fragment/common :: [//footer]" class="footer"></footer>
+		<!-- fin footer -->
+
 	</div>
-	<footer th:include="fragment/common :: [//footer]"></footer>
+	<!-- fin container -->
+
 </body>
 </html>

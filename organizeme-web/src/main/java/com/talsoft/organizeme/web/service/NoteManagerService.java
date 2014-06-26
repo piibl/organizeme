@@ -14,4 +14,6 @@ public interface NoteManagerService extends OwnedDomainObjectService<Note, Long,
 
 	List<Note> findByOwnerAndArchivedStatus(EndUser owner, boolean archived);
 
+	List<Note> findLastestByOwner(EndUser owner, int limit);
+
 }

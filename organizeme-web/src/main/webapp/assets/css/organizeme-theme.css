@@ -133,17 +133,16 @@ textarea{
 	width:100%;
 }
 
-/* footer {
-	background-color: #F5F5F5;
-	bottom: 0;
-	height: 60px;
-	position: absolute;
-	width: 100%;
-} */
-#footerContainer {
+footer {
+	border-top: 1px solid #EEEEEE;
+    margin-top: 40px;
+    padding-bottom: 40px;
+    padding-top: 40px;
+} 
+/* #footerContainer {
 	position:fixed;
     bottom:0;
     left:50%;
-    margin-left:-200px; /*negative half the width */
+    margin-left:-200px; negative half the width
     width:400px;
-}
+} */
