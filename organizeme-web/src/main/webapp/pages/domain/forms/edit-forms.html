@@ -8,10 +8,15 @@
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal"
 				aria-hidden="true">&times;</button>
-			<h3 class="modal-title">Modification de la tâche [ <span th:text="${task.content.title}">titre</span> ]</h3>
+			<h3 class="modal-title">
+				Modification de la tâche [ <span th:text="${task.content.title}">titre</span>
+				]
+			</h3>
 		</div>
-		<form class="editForm" th:action="${task.getLink('edit').href}" method="post" role="form" data-redirect_url="none"
-					th:attr="data-redirect_url=${redirectLink != null ? redirectLink.href : 'none'} " data-target_render="#tasksTable">
+		<form class="editForm" th:action="${task.getLink('edit').href}"
+			method="post" role="form" data-redirect_url="none"
+			th:attr="data-redirect_url=${redirectLink != null ? redirectLink.href : 'none'} "
+			data-target_render="#tasksTable">
 			<div class="modal-body">
 				<div class="form-group">
 					<label for="title">Titre</label><input name="title" type="text"
@@ -21,13 +26,12 @@
 				<div class="form-group">
 					<label for="goal">But de la tâche / description</label>
 					<textarea name="goal" class="form-control" autofocus="autofocus"
-						required="required"
-						th:placeholder="${task.content.goal}" />
+						required="required" th:placeholder="${task.content.goal}" />
 				</div>
 				<div class="form-group">
-					<label for="priority">Priorité</label><input name="priority" type="text"
-						class="form-control" autofocus="autofocus" required="required"
-						th:placeholder="${task.content.priority}" />
+					<label for="priority">Priorité</label><input name="priority"
+						type="text" class="form-control" autofocus="autofocus"
+						required="required" th:placeholder="${task.content.priority}" />
 				</div>
 				<div class="form-group">
 					<label for="localization">Lieu</label>
@@ -40,16 +44,18 @@
 					<label for="startDate">Début de la tâche</label>
 					<div class='input-group date datetimepicker'>
 						<input autofocus="autofocus" required="required" name="startDate"
-							type='text' class="form-control" th:placeholder="${#joda.customDateTime(task.content.startDate)}"/> <span
-							class="input-group-addon"><span
+							type='text' class="form-control"
+							th:placeholder="${#joda.customDateTime(task.content.startDate)}" />
+						<span class="input-group-addon"><span
 							class="glyphicon glyphicon-calendar"></span> </span>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="endDate">Fin de la tâche</label>
 					<div class='input-group date datetimepicker'>
-						<input name="endDate" type='text' class="form-control"  th:placeholder="${#joda.customDateTime(task.content.endDate)}"/> <span
-							class="input-group-addon"><span
+						<input name="endDate" type='text' class="form-control"
+							th:placeholder="${#joda.customDateTime(task.content.endDate)}" />
+						<span class="input-group-addon"><span
 							class="glyphicon glyphicon-calendar"></span> </span>
 					</div>
 				</div>
@@ -58,16 +64,56 @@
 				<button type="submit" class="btn btn-primary btn-lg" role="button">Valider</button>
 			</div>
 		</form>
+		<!-- API pour complétion des adresses et calendriers -->
+		<!-- DatetimePicker locale fichier -->
 		<script src="../assets/js/locales/bootstrap-datetimepicker.fr.js"
 			th:src="@{/assets/js/locales/bootstrap-datetimepicker.fr.js}"></script>
-		<script type="text/javascript">
-	    /* activer datetimepicker */
-	    $(document).ready(function() {
-		$('div.datetimepicker').datetimepicker({
-		    language : 'fr'
-		});
-	    });
-	</script>
+
+		<!-- Initialisation des API -->
+		<script src="../assets/js/organizeme-datepicker.js"
+			th:src="@{/assets/js/organizeme-datepicker.js}"></script>
+		<!-- Initialisation des API -->
+		<script src="../assets/js/organizeme-datepicker.js"
+			th:src="@{/assets/js/organizeme-datepicker.js}"></script>
+		<script src="../assets/js/organizeme-addresspicker.js"
+			th:src="@{/assets/js/organizeme-addresspicker.js}"></script>
+	</div>
+	<!-- Formulaire d'ajout d'une note -->
+	<div th:fragment="edit-note-form">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">&times;</button>
+			<h3 class="modal-title">
+				Modification de la note [ <span th:text="${note.content.title}">titre</span>
+				]
+			</h3>
+		</div>
+		<form class="editForm" th:action="${note.getLink('edit').href}"
+			method="post" role="form" data-redirect_url="none"
+			th:attr="data-redirect_url=${redirectLink != null ? redirectLink.href : 'none'} "
+			data-target_render="#notesTable">
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="title">Titre de la note</label><input name="title"
+						type="text" class="form-control" autofocus="autofocus"
+						required="required" th:placeholder="${note.content.title}" />
+				</div>
+				<div class="form-group">
+					<label for="content">Contenu</label>
+					<textarea id="editor" name="content" class="form-control"
+						autofocus="autofocus" required="required"
+						th:placeholder="${note.content.content}" />
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary btn-lg" role="button">Valider</button>
+			</div>
+		</form>
+		<!-- Initialisation des API -->
+		<script src="../assets/js/locales/bootstrap-wysihtml5.fr-FR.js"
+			th:src="@{/assets/js/locales/bootstrap-wysihtml5.fr-FR.js}"></script>
+		<script src="../assets/js/organizeme-wysiwyg.js"
+			th:src="@{/assets/js/organizeme-wysiwyg.js}"></script>
 	</div>
 </body>
 </html>
